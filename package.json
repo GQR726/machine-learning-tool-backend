@@ -6,18 +6,21 @@
   "scripts": {
     "start": "node app.js",
     "app": "nodemon app.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "heroku-postbuild": "cd mern_a_to_z_client && npm install --only=dev && npm install && npm run build",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint './src/**/*.{js,jsx}'",
+    "lint:fix": "eslint './src/**/*.{js,jsx}' --fix"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/GQR726/BOOK.git"
+    "url": "git+https://github.com/GQR726/machine-learning-tool.git"
   },
   "author": "Gavin",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/GQR726/BOOK/issues"
+    "url": "https://github.com/GQR726/machine-learning-tool/issues"
   },
-  "homepage": "https://github.com/GQR726/BOOK#readme",
+  "homepage": "https://github.com/GQR726/machine-learning-tool#readme",
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.2",
@@ -28,6 +31,21 @@
     "validation": "^0.0.1"
   },
   "devDependencies": {
-    "nodemon": "^2.0.15"
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-loader": "^4.0.2",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-react": "^7.29.4",
+    "husky": "^7.0.4",
+    "lint-staged": "^12.3.7",
+    "nodemon": "^2.0.15",
+    "prettier": "^2.6.1"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.js": "eslint --cache --fix"
   }
 }
